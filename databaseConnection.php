@@ -12,7 +12,7 @@ $options = [
 
 try {
     $databaseConnection = new PDO($dataSourceName, $username, $password, $options);
-    echo "Database connection functional.";
+    echo '<p class="debug-info">Database connection functional.</p>';
 } catch (\PDOException $exception) {
     throw new \PDOException($exception->getMessage(), (int)$exception->getCode());
 }
