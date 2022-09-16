@@ -26,29 +26,36 @@ include 'databaseConnection.php';
         <?php
 
         if (!empty($_GET['searched-movie-name'])) {
-            echo "<p>You searched for: " . $_GET['searched-movie-name'] . "</p>";
-            // $likeContent = "%" . $_GET['searched-movie-name'] . "%";
             $sqlSelectContent = "release_year";
             $sqlFromContent = "film";
-            $sqlLikeContent = "Academy Dinosaur";
+            $sqlLikeContent = "%" . $_GET['searched-movie-name'] . "%";
 
             try {
-                $preparedSqlQuery = $databaseConnection->prepare("SELECT release_year FROM film WHERE title=?");
+                $preparedSqlQuery = $databaseConnection->prepare("SELECT title, description, rating, release_year FROM film WHERE title LIKE ?");
                 $preparedSqlQuery->execute([$sqlLikeContent]);
                 $sqlQueryResultsArray = $preparedSqlQuery->fetchAll();
-                echo '<p class="debug-info">' . $database . '</p>';
             } catch (PDOException $e) {
-                echo $e;
+                echo $e->getMessage();
             }
 
             if (!empty($sqlQueryResultsArray)) {
-                echo "<ul>";
+                echo "<table>";
+                echo "<caption>Movie titles that contain " . $_GET['searched-movie-name'] . "</caption>";
+                echo "<thead>
+                    <td>Title</td>
+                    <td>Description</td>
+                    <td>Rating</td>
+                    <td>Release Year</td>
+                </thead>";
+                echo "<tbody>";
                 foreach ($sqlQueryResultsArray as $resultRow) {
-                    echo "<li>";
-                    echo $resultRow['release_year'];
-                    echo "</li>";
+                    echo "<tr>";
+                    echo "<td>" . ucwords(strtolower($resultRow['title'])) . "<td>{$resultRow['description']}</td><td>{$resultRow['rating']}</td><td>{$resultRow['release_year']}</td>";
+                    echo "</tr>";
                 }
-                // echo "<\ul>";
+                echo "</tbody>";
+            } else {
+                echo "Couldn't find any matches.";
             }
         }
 
@@ -57,3 +64,4 @@ include 'databaseConnection.php';
 </body>
 
 </html>
+<?php $databaseConnection = null; ?>
