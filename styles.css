@@ -1,3 +1,16 @@
+* {
+    /* margin: 0;
+    padding: 0; */
+}
+
 .debug-info {
     color: red;
+}
+
+ul {
+    list-style-type: none;
+}
+
+li {
+    margin: 10px 0;
 }
