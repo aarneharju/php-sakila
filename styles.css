@@ -7,17 +7,27 @@
     color: red;
 }
 
+section {
+    width: 100vw;
+}
+
 ul {
     list-style-type: none;
+    width: 80%;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
 }
 
 li {
-    margin: 10px 0;
+    margin: 10px;
+    white-space: nowrap;
 }
 
 table {
     border-collapse: collapse;
-
 }
 
 caption {

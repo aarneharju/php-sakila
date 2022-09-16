@@ -77,7 +77,7 @@ function arrayFromPreparedSqlQuery($sqlQuery, $variableArray, $dbConnection)
             echo "<ul>";
             foreach ($arrayOfFilmsOfSelectedCategory as $filmTitle) {
                 echo "<li>";
-                echo $filmTitle['title'];
+                echo ucwords(strtolower($filmTitle['title']));
                 echo "</li>";
             }
             echo "</ul>";
