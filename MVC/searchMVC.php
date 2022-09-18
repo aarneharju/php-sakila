@@ -1,5 +1,9 @@
 <?php
-// include 'databaseConnection.php';
+include 'includes/class-autoloader.inc.php';
+include 'includes/databasecredentials.inc.php';
+echo "server2: $server";
+// include 'classes/sakilaview.class.php';
+// include 'classes/sakilamodel.class.php';
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +18,7 @@
 </head>
 
 <body>
-    <form action="search.php" method="get">
+    <form method="get">
         <fieldset>
             <legend>Search for a movie:</legend>
             <label for="searched-movie-name">Movie name:</label>
@@ -30,33 +34,38 @@
             $sqlFromContent = "film";
             $sqlLikeContent = "%" . $_GET['searched-movie-name'] . "%";
 
-            try {
-                $preparedSqlQuery = $databaseConnection->prepare("SELECT title, description, rating, release_year FROM film WHERE title LIKE ?");
-                $preparedSqlQuery->execute([$sqlLikeContent]);
-                $sqlQueryResultsArray = $preparedSqlQuery->fetchAll();
-            } catch (PDOException $e) {
-                echo $e->getMessage();
-            }
+            $sakilaView = new SakilaView($server, $username, $password, $database);
+            $searchResultFilms = $sakilaView->showFilmsBySearchString($sqlLikeContent);
 
-            if (!empty($sqlQueryResultsArray)) {
-                echo "<table>";
-                echo "<caption>Movie titles that contain " . $_GET['searched-movie-name'] . "</caption>";
-                echo "<thead>
-                    <td>Title</td>
-                    <td>Description</td>
-                    <td>Rating</td>
-                    <td>Release Year</td>
-                </thead>";
-                echo "<tbody>";
-                foreach ($sqlQueryResultsArray as $resultRow) {
-                    echo "<tr>";
-                    echo "<td>" . ucwords(strtolower($resultRow['title'])) . "<td>{$resultRow['description']}</td><td>{$resultRow['rating']}</td><td>{$resultRow['release_year']}</td>";
-                    echo "</tr>";
-                }
-                echo "</tbody>";
-            } else {
-                echo "Couldn't find any matches.";
-            }
+
+
+            // try {
+            //     $preparedSqlQuery = $databaseConnection->prepare("SELECT title, description, rating, release_year FROM film WHERE title LIKE ?");
+            //     $preparedSqlQuery->execute([$sqlLikeContent]);
+            //     $sqlQueryResultsArray = $preparedSqlQuery->fetchAll();
+            // } catch (PDOException $e) {
+            //     echo $e->getMessage();
+            // }
+
+            // if (!empty($sqlQueryResultsArray)) {
+            //     echo "<table>";
+            //     echo "<caption>Movie titles that contain " . $_GET['searched-movie-name'] . "</caption>";
+            //     echo "<thead>
+            //         <td>Title</td>
+            //         <td>Description</td>
+            //         <td>Rating</td>
+            //         <td>Release Year</td>
+            //     </thead>";
+            //     echo "<tbody>";
+            //     foreach ($sqlQueryResultsArray as $resultRow) {
+            //         echo "<tr>";
+            //         echo "<td>" . ucwords(strtolower($resultRow['title'])) . "<td>{$resultRow['description']}</td><td>{$resultRow['rating']}</td><td>{$resultRow['release_year']}</td>";
+            //         echo "</tr>";
+            //     }
+            //     echo "</tbody>";
+            // } else {
+            //     echo "Couldn't find any matches.";
+            // }
         }
 
         ?>

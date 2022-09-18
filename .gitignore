@@ -1,3 +1,4 @@
 databaseCredentials.php
+databaseCredentials.inc.php
 .DS_Store
 sakila-db/

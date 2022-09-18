@@ -8,13 +8,14 @@ class DatabaseConnection
     private $database;
     private $charset = 'utf8mb4';
 
-    public function __construct()
+    public function __construct($server, $username, $password, $database)
     {
-        include '../includes/databasecredentials.inc.php';
-        $this->server = $server;
-        $this->username = $username;
-        $this->password = $password;
-        $this->database = $database;
+        include 'includes/databasecredentials.inc.php';
+        echo "server: $server";
+        $this->server = "localhost"; //$server;
+        $this->username = "***REMOVED***"; //$username;
+        $this->password = "***REMOVED***"; //$password;
+        $this->database = "sakila"; //$database;
     }
 
     protected function connect()
@@ -27,7 +28,7 @@ class DatabaseConnection
         ];
 
         try {
-            $databaseConnection = new PDO($dataSourceName, $this->username, $this->password, $options);
+            return new PDO($dataSourceName, $this->username, $this->password, $options);
             // echo '<p class="debug-info">Database connection functional.</p>';
         } catch (\PDOException $exception) {
             throw new \PDOException($exception->getMessage(), (int)$exception->getCode());
