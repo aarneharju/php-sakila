@@ -34,7 +34,7 @@ include 'includes/class-autoloader.inc.php';
             $sqlLikeContent = "%" . $_GET['searched-movie-name'] . "%";
 
             $sakilaView = new SakilaView();
-            $searchResultFilms = $sakilaView->showFilmsBySearchString($sqlLikeContent);
+            $sakilaView->showFilmsBySearchString($sqlLikeContent);
 
 
 
