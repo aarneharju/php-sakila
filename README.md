@@ -2,7 +2,7 @@
 ## Database
 You can download the database from [here](https://dev.mysql.com/doc/index-other.html).
 ## Database credentials
-You need to create databaseCredentials.php -file to the root folder with following content:
+You need to create databaseCredentials.php -file to the root folder (or to the includes -folder for the MVC version) with following content:
 ```php
 <?php
 $servername = 'localhost_or_your_server_address';
