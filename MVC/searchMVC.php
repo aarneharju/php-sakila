@@ -1,7 +1,7 @@
 <?php
 include 'includes/class-autoloader.inc.php';
 include 'includes/databasecredentials.inc.php';
-echo "server2: $server";
+// echo "server2: $server";
 // include 'classes/sakilaview.class.php';
 // include 'classes/sakilamodel.class.php';
 ?>

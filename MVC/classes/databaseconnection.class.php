@@ -11,7 +11,7 @@ class DatabaseConnection
     public function __construct($server, $username, $password, $database)
     {
         include 'includes/databasecredentials.inc.php';
-        echo "server: $server";
+        // echo "server: $server";
         $this->server = "localhost"; //$server;
         $this->username = "***REMOVED***"; //$username;
         $this->password = "***REMOVED***"; //$password;
