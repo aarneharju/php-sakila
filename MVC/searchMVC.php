@@ -1,6 +1,5 @@
 <?php
 include 'includes/class-autoloader.inc.php';
-include 'includes/databasecredentials.inc.php';
 // echo "server2: $server";
 // include 'classes/sakilaview.class.php';
 // include 'classes/sakilamodel.class.php';
@@ -34,7 +33,7 @@ include 'includes/databasecredentials.inc.php';
             $sqlFromContent = "film";
             $sqlLikeContent = "%" . $_GET['searched-movie-name'] . "%";
 
-            $sakilaView = new SakilaView($server, $username, $password, $database);
+            $sakilaView = new SakilaView();
             $searchResultFilms = $sakilaView->showFilmsBySearchString($sqlLikeContent);
 
 

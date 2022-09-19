@@ -8,14 +8,14 @@ class DatabaseConnection
     private $database;
     private $charset = 'utf8mb4';
 
-    public function __construct($server, $username, $password, $database)
+    public function __construct()
     {
         include 'includes/databasecredentials.inc.php';
-        // echo "server: $server";
-        $this->server = "localhost"; //$server;
-        $this->username = "***REMOVED***"; //$username;
-        $this->password = "***REMOVED***"; //$password;
-        $this->database = "sakila"; //$database;
+        // echo "server: $servername";
+        $this->server = $servername;
+        $this->username = $username;
+        $this->password = $password;
+        $this->database = $database;
     }
 
     protected function connect()
