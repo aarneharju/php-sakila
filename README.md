@@ -10,3 +10,5 @@ $username = 'your_database_username_here';
 $password = 'your_database_password_here';
 $database = 'your_database_name_here';
 ```
+## Model - View - Controller design pattern
+I redid the basic procedural version (found in the root folder) using object oriented approach and implemented model - view - controller design pattern. You can find it in the MVC folder.
